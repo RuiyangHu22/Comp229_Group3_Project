@@ -1,10 +1,14 @@
 require('dotenv').config()
+const cors = require('cors');
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')    
 
 const port = 3000;
 
+app.use(cors({
+    origin: 'http://localhost:5173'  // Adjust the origin to match your frontend's URL
+  }));
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 const db = mongoose.connection
