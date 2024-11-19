@@ -7,10 +7,10 @@ const mongoose = require('mongoose')
 const port = 3000;
 
 app.use(cors({
-    origin: 'http://localhost:5173'  // Adjust the origin to match your frontend's URL
+    origin: 'http://localhost:5173'
   }));
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
