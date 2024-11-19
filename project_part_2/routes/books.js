@@ -41,13 +41,6 @@ router.post('/', async (req, res) => {
 
 
 
-title
-description
-genre
-author
-isbn
-status
-category
 //update book by id
 router.put('/:id', getBook, async (req, res) => {
   if (req.body.title != null) {
@@ -62,11 +55,11 @@ router.put('/:id', getBook, async (req, res) => {
   if (req.body.author != null) {
     res.book.author = req.body.author
   }
-  if (req.body.price != null) {
+  if (req.body.isbn != null) {
     res.book.isbn = req.body.isbn
   }
-  if (req.body.quantity != null) {
-    res.book.quantity = req.body.quantity
+  if (req.body.status != null) {
+    res.book.status = req.body.status
   }
   if (req.body.category != null) {
     res.book.category = req.body.category
