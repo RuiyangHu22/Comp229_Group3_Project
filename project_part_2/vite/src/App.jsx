@@ -5,7 +5,7 @@ const database = 'http://localhost:3000/books';
 
 function App() {
   const [books, setBooks] = useState([]);
-  const [newBook, setNewBook] = useState({ title: '', author: '', description: '', price: '', quantity: '', category: '' });
+  const [newBook, setNewBook] = useState({ title: '',  description: '',  genre: '',author: '', isbn: '',  status: '', category: '' });
   const [editBook, setEditBook] = useState(null);
 
   // Fetch all books
@@ -89,27 +89,33 @@ function App() {
         />
         <input
           type="text"
+          placeholder="Description"
+          value={newBook.description}
+          onChange={(e) => setNewBook({ ...newBook, description: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Genre"
+          value={newBook.genre}
+          onChange={(e) => setNewBook({ ...newBook, genre: e.target.value })}
+        />
+        <input
+          type="text"
           placeholder="Author"
           value={newBook.author}
           onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
         />
         <input
           type="text"
-          placeholder="Description"
-          value={newBook.description}
-          onChange={(e) => setNewBook({ ...newBook, description: e.target.value })}
+          placeholder="ISBN"
+          value={newBook.isbn}
+          onChange={(e) => setNewBook({ ...newBook, isbn: e.target.value })}
         />
         <input
-          type="number"
-          placeholder="Price"
-          value={newBook.price}
-          onChange={(e) => setNewBook({ ...newBook, price: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={newBook.quantity}
-          onChange={(e) => setNewBook({ ...newBook, quantity: e.target.value })}
+          type="text"
+          placeholder="status"
+          value={newBook.status}
+          onChange={(e) => setNewBook({ ...newBook, status: e.target.value })}
         />
         <input
           type="text"
@@ -131,23 +137,28 @@ function App() {
             />
             <input
               type="text"
+              value={editBook.description}
+              onChange={(e) => setEditBook({ ...editBook, description: e.target.value })}
+            />
+            <input
+              type="text"
+              value={editBook.genre}
+              onChange={(e) => setEditBook({ ...editBook, genre: e.target.value })}
+            />
+            <input
+              type="text"
               value={editBook.author}
               onChange={(e) => setEditBook({ ...editBook, author: e.target.value })}
             />
             <input
               type="text"
-              value={editBook.description}
-              onChange={(e) => setEditBook({ ...editBook, description: e.target.value })}
+              value={editBook.isbn}
+              onChange={(e) => setEditBook({ ...editBook, isbn: e.target.value })}
             />
             <input
-              type="number"
-              value={editBook.price}
-              onChange={(e) => setEditBook({ ...editBook, price: e.target.value })}
-            />
-            <input
-              type="number"
-              value={editBook.quantity}
-              onChange={(e) => setEditBook({ ...editBook, quantity: e.target.value })}
+              type="text"
+              value={editBook.status}
+              onChange={(e) => setEditBook({ ...editBook, status: e.target.value })}
             />
             <input
               type="text"
@@ -165,10 +176,11 @@ function App() {
         {books.map((book) => (
           <li key={book._id}>
             <h3>{book.title}</h3>
-            <p>Author: {book.author}</p>
             <p>Description: {book.description}</p>
-            <p>Price: ${book.price}</p>
-            <p>Quantity: {book.quantity}</p>
+            <p>Genre: {book.genre}</p>
+            <p>Author: {book.author}</p>
+            <p>ISBN: ${book.isbn}</p>
+            <p>Status: {book.quantity}</p>
             <p>Category: {book.category}</p>
             <button onClick={() => handleEdit(book)}>Edit</button>
             <button onClick={() => handleDelete(book._id)}>Delete</button>
